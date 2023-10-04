@@ -1,14 +1,15 @@
 import java.util.Scanner;
 
+
 public class Login {
  
     static Scanner in = new Scanner(System.in);
-  static String userlogin, pwlogin;
+    static String uslogin, pwlogin;
  
   static String userLogin(){
     System.out.print("Username = ");
-    userlogin = in.nextLine();
-    return userlogin;
+    uslogin = in.nextLine();
+  return uslogin;
   }
  
   static String pwLogin(){
