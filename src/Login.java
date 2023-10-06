@@ -42,11 +42,11 @@ public class Login {
            for(int i = 3;i >= 1;i --){
  
             if(userLogin().equals(username) && pwLogin().equals(pass)){
-              System.out.println("Selamat Datang ADMIN");
+              System.out.println("Selamat Datang "+ nama);
               break;
             } 
             else if( i == 1 ){
-              System.out.println("Anda sudah 3x salah, tunggu 5 menit untuk login kembali");
+              System.out.println("Anda sudah 3x salah, silahkan untuk login kembali");
             }
             else {
               System.out.println("Username atau Password salah, silakan login kembali " + "(kesempatan login "+(i-1)+"x lagi)");
