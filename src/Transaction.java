@@ -1,5 +1,4 @@
 
-
 import java.util.Scanner;
 
 public class Transaction {
@@ -39,6 +38,7 @@ public class Transaction {
         ChoosePayment = input.nextInt();
 
         if (ChoosePayment == 1) {
+            choose = false;
             System.out.println("---------------------------------------");
             System.out.println("Pembayaran dapat dilakukakan ditempat panitia acara");
             ;
@@ -49,7 +49,6 @@ public class Transaction {
             System.out.println("Mandiri 1357924680");
             System.out.println("BRI 1209348756");
         } else {
-            System.out.println("\n");
             System.out.println("Maaf saya tidak mengerti pembayaran yang anda masukkan");
             return;
         }

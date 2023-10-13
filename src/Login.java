@@ -1,5 +1,4 @@
 
-
 import java.util.Scanner;
 
 public class Login {
@@ -38,19 +37,19 @@ public class Login {
 
             System.out.print("Ulangi Password = ");
             ulang_pass = in.nextLine();
-        
 
             if (ulang_pass.equals(pass)) {
                 Daftar = false;
                 System.out.println("-------------------------------");
-                System.out.println("Registrasi Berhasil\nLogin User");
+                System.out.println("Registrasi Berhasil");
+                System.out.println("========================================");
+                System.out.println("||                Login               ||");
+                System.out.println("========================================");
 
-              // boolean userLogin = true;
                 for (int i = 3; i >= 1; i--) {
 
                     if (userLogin().equals(username) && pwLogin().equals(pass)) {
                         System.out.println("Selamat Datang " + nama);
-                        // userLogin = false;
                         transaction.OrderTicket();
                         break;
                     } else if (i == 1) {
