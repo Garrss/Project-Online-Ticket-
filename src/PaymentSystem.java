@@ -1,34 +1,22 @@
-import java.util.Scanner;
- 
-    public class PaymentSystem {
-        public void psm() {
-            Scanner pay = new Scanner(System.in);
-            int ChoosePayment;
-            
-            
-              
-            System.out.println("-------------------");
-            System.out.println("Choose Payment : ");
-            System.out.println("1. Tunai");
-            System.out.println("2. Non Tunai");
-            System.out.print("Enter The Payment : ");
-            ChoosePayment = pay.nextInt();
-            
-            if (ChoosePayment == 1) {
-                System.out.println("------------------------------------------------------");
-                System.out.println("Pembayaran Dapat Di lakukakan Di Tempat Pantia Acara");;
-            } else if (ChoosePayment == 2) {
-                System.out.println("-------------------");
-                System.out.println("Pilih Pembayaran");
-                    System.out.println("BCA 0987654321");
-                    System.out.println("Mandiri 1357924680");
-                    System.out.println("BRI 1209348756");
-                } else {
-                    System.out.println("\n");
-                    System.out.println("Maaf Saya Tidak Mengerti Pembayaran YAng Anda Masukan");
-                    return;
-                }
-                
-            }
+
+public class PaymentSystem {
+    double priceTicketVIP = 300.0;
+    double priceTicketReguler = 200.0;
+    double priceTicketBiasa = 80.0;
+    double totalprice = 0.0;
+
+    public double totalPrice(int CategoryTicket, int NumberofTicket) {
+        if (CategoryTicket == 1) {
+            totalprice = priceTicketVIP * NumberofTicket;
+        } else if (CategoryTicket == 2) {
+            totalprice = priceTicketReguler * NumberofTicket;
+        } else if (CategoryTicket == 3) {
+            totalprice = priceTicketBiasa * NumberofTicket;
+        } else {
+            totalprice = 0.0;
+            System.out.println("the ticket number you entered is invalid.");
         }
-        
+
+        return totalprice;
+    }
+}
