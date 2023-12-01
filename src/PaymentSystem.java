@@ -1,5 +1,5 @@
 
-public class PaymentSystem {
+ class PaymentSystem {
     double priceTicketVIP = 300.0;
     double priceTicketReguler = 200.0;
     double priceTicketBiasa = 80.0;

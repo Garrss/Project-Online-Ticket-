@@ -1,7 +1,7 @@
 
 import java.util.Scanner;
 
-public class Transaction {
+class Transaction {
     public void OrderTicket() {
         Scanner input = new Scanner(System.in);
         PaymentSystem ticket = new PaymentSystem();

@@ -1,7 +1,7 @@
 
 import java.util.Scanner;
 
-public class Login {
+class Login {
     static Scanner in = new Scanner(System.in);
     static String uslogin, pwlogin;
 
