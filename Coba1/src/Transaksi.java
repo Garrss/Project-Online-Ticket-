@@ -1,12 +1,18 @@
-
 import java.util.Scanner;
 
-class Transaksi {
-    public void OrderTicket() {
+ class Transaction {
+
+    public static void main(String[] args) {
+        OrderTicket();
+    }
+    public static void OrderTicket() {
         Scanner input = new Scanner(System.in);
         PaymentSystem ticket = new PaymentSystem();
         int ChooseTicket = 0;
         int ChoosePayment = 0;
+
+        String[] jenisTiket = { "VIP", "Reguler", "Biasa" };
+        double[] hargaTiket = { 300.0, 200.0, 80.0 };
 
         System.out.println("---------------------------------------");
         System.out.print("Enter the ticket number you want to buy: ");
@@ -16,9 +22,9 @@ class Transaksi {
         while (choose) {
             System.out.println("---------------------------------------");
             System.out.println("Choose Ticket class : ");
-            System.out.println("1. Ticket VIP - $" + ticket.priceTicketVIP);
-            System.out.println("2. Ticket Reguler - $" + ticket.priceTicketReguler);
-            System.out.println("3. Ticket Biasa - $" + ticket.priceTicketBiasa);
+            for (int i = 0; i < hargaTiket.length; i++) {
+                System.out.println((i + 1) + ". Ticket " + jenisTiket[i] + " - $" + hargaTiket[i]);
+            }
             System.out.print("Enter the tiket class: ");
             ChooseTicket = input.nextInt();
 
@@ -55,3 +61,4 @@ class Transaksi {
         System.out.println("Total Price " + ticket.totalPrice(ChooseTicket, NumberofTicket));
     }
 }
+ 

@@ -1,12 +1,8 @@
 import java.util.Scanner;
 
-public class Login {
+public class Login2 {
   static Scanner input = new Scanner(System.in);
-  static String[] usernames = new String[100];
-  static String[] passwords = new String[100];
-  static String[] Namalengkap = new String[100];
-
-  static int userCount = 0;
+static String uslogin, pwlogin;
 
   static String userLogin() {
     System.out.print("Username = ");
@@ -22,7 +18,7 @@ public class Login {
     String nama, username, pass, ulangPass;
 
     System.out.println("========================================");
-    System.out.println("||           Registration             ||");
+    System.out.println("||           Pembelian user           ||");
     System.out.println("========================================");
 
     do {
@@ -41,10 +37,6 @@ public class Login {
       if (!ulangPass.equals(pass)) {
         System.out.println("Gagal, passwords Salah. Please try again.");
       } else {
-        usernames[userCount] = username;
-        passwords[userCount] = pass;
-        Namalengkap[userCount] = nama;
-        userCount++;
         System.out.println("-------------------------------");
         System.out.println("Registration Successful");
         login(username, pass);
@@ -57,35 +49,33 @@ public class Login {
     System.out.println("========================================");
     System.out.println("||                Login               ||");
     System.out.println("========================================");
-    
+
     boolean cocok = false;
+    int counterLoginInvalid = 1;
     int i = 3;
-    
-    while (i > 0) {
+
+    while (true) {
       String MasukanUsername = userLogin();
       String MasukanPassword = pwLogin();
 
-
-      for (int j = 0; j < userCount; j++) {
-        if (MasukanUsername.equals(usernames[j]) && MasukanPassword.equals(passwords[j])) {
-          cocok = true;
-          System.out.println("Selamat Datang " + Namalengkap[j]);
-          return;
-        }
+      if (MasukanUsername.equals(username) && MasukanPassword.equals(pass)) {
+        cocok = true;
+        System.out.println("Selamat Datang " + MasukanUsername);
+        return;
+      } else if (counterLoginInvalid == 3) {
+        System.out.println("Anda sudah 3x salah, Akun anda terhapus. Silahkan registrasi kembali.");
+        return;
+      } else {
+        System.out.println(
+            "Username atau Password salah, silakan login kembali " + "(kesempatan login " + (3 - counterLoginInvalid)
+                + "x lagi)");
+        counterLoginInvalid++;
       }
-      
-      
-      
-        System.out.println("You have reached the maximum login attempts.");
-        break;
-    }
-        System.out.println("Username atau Password salah, silakan login kembali.kesempatan login : " + (i - 1));
-      
-      registrasi();
 
     }
-    public static void main(String[] args) {
-      registrasi();
-  
+  }
+
+  public static void main(String[] args) {
+    registrasi();
   }
 }
