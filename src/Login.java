@@ -1,68 +1,91 @@
-
 import java.util.Scanner;
 
-class Login {
-    static Scanner in = new Scanner(System.in);
-    static String uslogin, pwlogin;
+public class Login {
+  static Scanner input = new Scanner(System.in);
+  static String[] usernames = new String[100];
+  static String[] passwords = new String[100];
+  static String[] Namalengkap = new String[100];
 
-    static String userLogin() {
-        System.out.print("Username = ");
-        uslogin = in.nextLine();
-        return uslogin;
-    }
+  static int userCount = 0;
 
-    static String pwLogin() {
-        System.out.print("Password = ");
-        pwlogin = in.nextLine();
-        return pwlogin;
-    }
+  static String userLogin() {
+    System.out.print("Username = ");
+    return input.nextLine();
+  }
 
-    public static void main(String[] args) {
-        String nama, username, pass, ulang_pass;
-        Transaction transaction = new Transaction();
-        boolean Daftar = true;
+  static String pwLogin() {
+    System.out.print("Password = ");
+    return input.nextLine();
+  }
 
-        while (Daftar) {
-            System.out.println("========================================");
-            System.out.println("||            Registrasi              ||");
-            System.out.println("========================================");
-            System.out.print("Username = ");
-            username = in.nextLine();
+  static void registrasi() {
+    String nama, username, pass, ulangPass;
 
-            System.out.print("Nama Lengkap = ");
-            nama = in.nextLine();
+    System.out.println("========================================");
+    System.out.println("||           Registration             ||");
+    System.out.println("========================================");
 
-            System.out.print("Password = ");
-            pass = in.nextLine();
+    do {
+      System.out.print("Username: ");
+      username = input.nextLine();
 
-            System.out.print("Ulangi Password = ");
-            ulang_pass = in.nextLine();
+      System.out.print("Nama Lengkap: ");
+      nama = input.nextLine();
 
-            if (ulang_pass.equals(pass)) {
-                Daftar = false;
-                System.out.println("-------------------------------");
-                System.out.println("Registrasi Berhasil");
-                System.out.println("========================================");
-                System.out.println("||                Login               ||");
-                System.out.println("========================================");
+      System.out.print("Password: ");
+      pass = input.nextLine();
 
-                for (int i = 3; i >= 1; i--) {
+      System.out.print("Confirm Password: ");
+      ulangPass = input.nextLine();
 
-                    if (userLogin().equals(username) && pwLogin().equals(pass)) {
-                        System.out.println("Selamat Datang " + nama);
-                        transaction.OrderTicket();
-                        break;
-                    } else if (i == 1) {
-                        System.out.println("Anda sudah 3x salah,Akun anda terhapus silahkan untuk registrasi kembali");
-                    } else {
-                        System.out.println(
-                                "Username atau Password salah, silakan login kembali " + "(kesempatan login " + (i - 1)
-                                        + "x lagi)");
-                    }
-                }
-            } else {
-                System.out.println("Gagal");
-            }
+      if (!ulangPass.equals(pass)) {
+        System.out.println("Gagal, passwords Salah. Please try again.");
+      } else {
+        usernames[userCount] = username;
+        passwords[userCount] = pass;
+        Namalengkap[userCount] = nama;
+        userCount++;
+        System.out.println("-------------------------------");
+        System.out.println("Registration Successful");
+        login(username, pass);
+        return;
+      }
+    } while (true);
+  }
+
+  static void login(String username, String pass) {
+    System.out.println("========================================");
+    System.out.println("||                Login               ||");
+    System.out.println("========================================");
+    
+    boolean cocok = false;
+    int i = 3;
+    
+    while (i > 0) {
+      String MasukanUsername = userLogin();
+      String MasukanPassword = pwLogin();
+
+
+      for (int j = 0; j < userCount; j++) {
+        if (MasukanUsername.equals(usernames[j]) && MasukanPassword.equals(passwords[j])) {
+          cocok = true;
+          System.out.println("Selamat Datang " + Namalengkap[j]);
+          return;
         }
+      }
+      
+      
+      
+        System.out.println("You have reached the maximum login attempts.");
+        break;
     }
+        System.out.println("Username atau Password salah, silakan login kembali.kesempatan login : " + (i - 1));
+      
+      registrasi();
+
+    }
+    public static void main(String[] args) {
+      registrasi();
+  
+  }
 }
