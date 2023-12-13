@@ -6,7 +6,7 @@ public class struk {
 
         boolean struk = true;
 
-        while bbbbib(struk) {
+        while (struk) {
             System.out.println("========================================");
             System.out.println("||            PENYELESAIAN            ||");
             System.out.println("========================================");
