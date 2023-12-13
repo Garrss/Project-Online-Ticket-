@@ -17,7 +17,7 @@ public class Sitemkonser {
         Menupembelian();
         OrderTicket();
         PaymentSystem();
-        generateReceipt();
+        struk();
     }
 
     static double hargaTiketVIP = 300.0;
@@ -117,7 +117,7 @@ public class Sitemkonser {
         }
     }
 
-    public static void generateReceipt() {
+    public static void struk() {
         System.out.println("\n========================================");
         System.out.println("||              Struk Pembelian       ||");
         System.out.println("========================================");
