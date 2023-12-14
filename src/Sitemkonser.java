@@ -1,23 +1,31 @@
 import java.util.Scanner;
 
 public class Sitemkonser {
-    static String[] jenisTiket = { "VIP", "Reguler", "Biasa" };
-    static int[] hargaTiket = { 300, 100, 50 };
-    static int JumlahTiket = 0;
-    static boolean choose = true;
-    static int PilihTiket = 0;
-    static int PilihPembayaran = 0;
     static String nama;
     static String email;
     static String umur;
-    static String jenisKelamin;
-
+    static String[] Konser = {"Tulus","Rumah Sakit ","Reality Club"}
+    static int kelamininput = 0;
+    static String[] jenisKelamin = { "Laki-laki", "Perempuan" };
+    static String[] jenisTiket = { "VIP", "Reguler", "Biasa" };
+    static int[] hargaTiket = { 300, 100, 50 };
+    static int JumlahTiket = 0;
+    static int PilihTiket = 0;
+    static int PilihPembayaran = 0;
+    static String jenisbank = "";
+    static boolean choose = true;
 
     public static void main(String[] args) {
+        System.out.println("*****************************************");
+        System.out.println("***              Welcome!             ***");
+        System.out.println("***            to the Event!          ***");
+        System.out.println("*****************************************");
+
         Menupembelian();
         OrderTicket();
         PaymentSystem();
-        generateReceipt();
+        pembayaran();
+        Struk();
     }
 
     static double hargaTiketVIP = 300.0;
@@ -40,6 +48,17 @@ public class Sitemkonser {
         return total;
     }
 
+    public static void Menukonser() {
+        Scanner input = new Scanner(System.in);
+        System.out.println("=========================================================");
+        System.out.println("||           Menu Pembelian tiket                      ||");
+        System.out.println("|Konser :                    Hari            Artis     ||");
+        System.out.println("||1.                         Day 1           Tulus     ||");
+        System.out.println("||2.                         Day 2         Rumah sakit ||");
+        System.out.println("||3.                         Day 3         Reality Club||");
+        System.out.println("=========================================================");
+    }
+
     public static void Menupembelian() {
         Scanner input = new Scanner(System.in);
 
@@ -47,18 +66,22 @@ public class Sitemkonser {
         System.out.println("||           Menu Pembelian tiket     ||");
         System.out.println("========================================");
 
-        System.out.print("Nama Lengkap: ");
+        System.out.print("Masukkan Nama: ");
         nama = input.nextLine();
-       
-        System.out.print("Email: ");
+
+        System.out.print("Masukkan Email: ");
         email = input.nextLine();
 
-        System.out.print("Umur: ");
+        System.out.print("Masukkan Umur: ");
         umur = input.nextLine();
 
-        System.out.print("Jenis Kelamin: ");
-        jenisKelamin = input.nextLine();
-
+        System.out.println("Pilih Jenis Kelamin: ");
+        System.out.println("1. Laki-laki");
+        System.out.println("2. Perempuan");
+        while (kelamininput != 1 && kelamininput != 2) {
+            System.out.print("Masukan Jenis Kelamin Anda: ");
+            kelamininput = input.nextInt();
+        }
         System.out.println("Registration Successful!");
     }
 
@@ -93,41 +116,67 @@ public class Sitemkonser {
 
         System.out.println("*****************************");
         System.out.println("---------------------------------");
-        System.out.println("Jenis Pembayaran");
-        System.out.println("1. Tunai    ");
-        System.out.println("2. Qris     ");
+        System.out.println("Pilih Pembayaran");
+        System.out.println("1.Langsung ditempat panitia acara");
+        System.out.println("2.Transfer Bank");
         System.out.println("---------------------------------");
         System.out.println("*********************************");
         System.out.print(" Pilih Jenis Pembayaran : ");
         PilihPembayaran = input.nextInt();
 
         while (PilihPembayaran < 1 || PilihPembayaran > 2) {
-            System.out.println("Maaf saya tidak mengerti pembayaran yang anda masukkan");
+            System.out.print("Maaf, harap pilih 1 atau 2 untuk jenis pembayaran: ");
             PilihPembayaran = input.nextInt();
-        }
-        if (PilihPembayaran == 1) {
-            System.out.println("---------------------------------------");
-            System.out.println("Pembayaran dapat dilakukakan ditempat panitia acara");
-        } else if (PilihPembayaran == 2) {
-            System.out.println("---------------------------------------");
-            System.out.println("Pilih Pembayaran");
-            System.out.println("BCA 0987654321");
-            System.out.println("Mandiri 1357924680");
-            System.out.println("BRI 1209348756");
         }
     }
 
-    public static void generateReceipt() {
+    public static void pembayaran() {
+
+        Scanner input = new Scanner(System.in);
+
+        if (PilihPembayaran == 2) {
+            System.out.println("---------------------------------------");
+            System.out.println("Pilih Pembayaran");
+            System.out.println("1.BCA 0987654321");
+            System.out.println("2.Mandiri 1357924680");
+            System.out.println("3.BRI 1209348756");
+            System.out.print("Pilih Rekening Bank yang anda inginkan: ");
+            int pilihbank = input.nextInt();
+
+            switch (pilihbank) {
+                case 1:
+                    jenisbank = "BCA 0987654321";
+                    break;
+                case 2:
+                    jenisbank = "Mandiri 1357924680";
+                    break;
+                case 3:
+                    jenisbank = "BRI 1209348756";
+                    break;
+                default:
+                    System.out.println("Maaf saya tidak mengerti pembayaran yang anda masukkan");
+                    pembayaran();
+                    break;
+            }
+        } else if (PilihPembayaran == 1) {
+            jenisbank = "Langsung ditempat panitia acara";
+        }
+    }
+
+    public static void Struk() {
         System.out.println("\n========================================");
-        System.out.println("||              Struk Pembelian       ||");
-        System.out.println("========================================");
+        System.out.println("||              Struk Pembelian         ||");
+        System.out.println("==========================================");
         System.out.println("Nama: " + nama);
         System.out.println("Email: " + email);
         System.out.println("Umur: " + umur);
-        System.out.println("Jenis Kelamin: " + jenisKelamin);
+        System.out.println("Jenis Kelamin: " + jenisKelamin[kelamininput - 1]);
         System.out.println("Jumlah Tiket: " + JumlahTiket);
         System.out.println("Tipe Tiket: " + jenisTiket[PilihTiket - 1]);
+        System.out.println("Pembayaran: " + jenisbank);
         System.out.println("Total Harga: Rp" + Hitungtotal(PilihTiket, JumlahTiket));
-        System.out.println("========================================");
+        System.out.println("=========================================");
+        System.out.println("||              TerimaKasih             ||");
+        System.out.println("==========================================");
     }
 }
