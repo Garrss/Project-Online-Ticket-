@@ -4,7 +4,9 @@ public class Sitemkonser {
     static String nama;
     static String email;
     static String umur;
-    static String[] Konser = {"Tulus","Rumah Sakit ","Reality Club"}
+    static String[] Konser = { "Tulus", "Rumah Sakit ", "Reality Club" };
+    static int PilihKonser = 0;
+    static int Konserinput = 0;
     static int kelamininput = 0;
     static String[] jenisKelamin = { "Laki-laki", "Perempuan" };
     static String[] jenisTiket = { "VIP", "Reguler", "Biasa" };
@@ -21,10 +23,10 @@ public class Sitemkonser {
         System.out.println("***            to the Event!          ***");
         System.out.println("*****************************************");
 
+        Menukonser();
         Menupembelian();
         OrderTicket();
         PaymentSystem();
-        pembayaran();
         Struk();
     }
 
@@ -57,6 +59,16 @@ public class Sitemkonser {
         System.out.println("||2.                         Day 2         Rumah sakit ||");
         System.out.println("||3.                         Day 3         Reality Club||");
         System.out.println("=========================================================");
+
+        System.out.print("Masukkan konser: ");
+        Konserinput = input.nextInt();
+
+        if (PilihKonser == 1 || PilihKonser == 2 || PilihKonser == 3) {
+            choose = false;
+        } else {
+            System.out.println("Masukkan kembali pilihan tiket anda Y/T");
+            Konserinput = input.nextInt();
+        }
     }
 
     public static void Menupembelian() {
@@ -167,6 +179,7 @@ public class Sitemkonser {
         System.out.println("\n========================================");
         System.out.println("||              Struk Pembelian         ||");
         System.out.println("==========================================");
+        System.out.println("Konser: " + Konser[Konserinput - 1]);
         System.out.println("Nama: " + nama);
         System.out.println("Email: " + email);
         System.out.println("Umur: " + umur);
