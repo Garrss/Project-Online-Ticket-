@@ -1,5 +1,10 @@
 import java.util.Scanner;
 
+import java.util.Date;
+
+import java.text.SimpleDateFormat;
+
+
 public class Sitemkonser {
     static String nama, email, umur, jenisbank;
     static String[] Konser = { "TULUS", "RUMAHSAKIT", "REALITY CLUB", "FOURTWENTY", "DEWA" };
@@ -11,6 +16,9 @@ public class Sitemkonser {
     static int PilihKonser, kelamininput, JumlahTiket, PilihTiket, PilihPembayaran;
     static String purchaseHistory = "";
     static boolean choose = true;
+    static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    static Date purchaseDate;
+    
 
     public static void main(String[] args) {
         System.out.println("===================================================================================");
@@ -71,7 +79,7 @@ public class Sitemkonser {
 
         System.out.print("Masukkan Umur: ");
         umur = input.nextLine();
-
+         
         System.out.println("Pilih Jenis Kelamin: ");
         System.out.println("1. Laki-laki");
         System.out.println("2. Perempuan");
@@ -84,33 +92,29 @@ public class Sitemkonser {
         
     }
 //ini adalah tempat memesan tiket
-    public static void OrderTicket() {
-        Scanner order = new Scanner(System.in);
+public static void OrderTicket() {
+    Scanner order = new Scanner(System.in);
+    System.out.println("===================================================================================");
+    System.out.print("Enter the ticket number you want to buy: ");
+    JumlahTiket = order.nextInt();
 
-        System.out.println("===================================================================================");
-        System.out.print("Enter the ticket number you want to buy: ");
-        JumlahTiket = order.nextInt();
+    choose = true;
+        System.out.println("Choose Ticket class : ");
+        for (int j = 0; j < hargaTiket.length; j++) {
+            System.out.println((j + 1) + ". Ticket " + jenisTiket[j] + " - Rp" + hargaTiket[j]);
+        }
+        System.out.print("Enter the tiket class: ");
+        PilihTiket = order.nextInt();
 
-        choose = true;
-        while (choose) {
-            System.out.println("===================================================================================");
-            System.out.println("Choose Ticket class : ");
-            for (int i = 0; i < hargaTiket.length; i++) {
-                System.out.println((i + 1) + ". Ticket " + jenisTiket[i] + " - Rp" + hargaTiket[i]);
-            }
-            System.out.print("Enter the tiket class: ");
-            PilihTiket = order.nextInt();
-
-            if (PilihTiket == 1 || PilihTiket == 2 || PilihTiket == 3) {
-                choose = false;
-                System.out.println("You have chosen " + JumlahTiket + " Ticket");
-            } else {
-                System.out.println("Maaf Masukan lagi pilihan anda");
-            }
+        if (PilihTiket == 1 || PilihTiket == 2 || PilihTiket == 3) {
+            choose = false;
+            System.out.println("You have chosen " + JumlahTiket + " Ticket");  
+        } else {
+            System.out.println("Maaf Masukan lagi pilihan anda");
         }
         PaymentSystem();
-        
     }
+  
 //ini adalah tempat memeilih pembayaran
     public static void PaymentSystem() {
         Scanner input = new Scanner(System.in);
@@ -133,6 +137,8 @@ public class Sitemkonser {
     public static void pembayaran() {
 
         Scanner input = new Scanner(System.in);
+        purchaseDate = new Date();
+
 
         if (PilihPembayaran == 2) {
             System.out.println("===================================================================================");
@@ -158,6 +164,7 @@ public class Sitemkonser {
                     pembayaran();
                     break;
             }
+
         } else if (PilihPembayaran == 1) {
             jenisbank = "Langsung ditempat panitia acara";
         }
@@ -197,17 +204,20 @@ public class Sitemkonser {
 
         purchaseHistory += "Jumlah Tiket: " + JumlahTiket + ", ";
         purchaseHistory += "Pembayaran: " + jenisbank + ", ";
+        purchaseHistory += "Tanggal Pemesanan: " + dateFormat.format(purchaseDate) + ", ";
         purchaseHistory += "Total Harga: Rp" + Hitungtotal(PilihTiket, JumlahTiket) + "\n";
 
         Struk();
     }
     //ini adalah rekap semua yang telah di lakukan/struk
     public static void Struk() {
+        purchaseDate = new Date();
 
         System.out.println("===================================================================================");
         System.out.println("||                               Struk Pembelian                                 ||");
         System.out.println("===================================================================================");
-        System.out.println("  | " + Konser[PilihKonser - 1]);
+        System.out.println("  |Tanggal Pemesanan: " + dateFormat.format(purchaseDate));
+        System.out.println("  | " + Konser[PilihKonser -1]);
         System.out.println("  | " + Day[PilihKonser - 1]);
         System.out.println("  | " + tempat[PilihKonser - 1]);
         System.out.println("  |  ");
@@ -222,7 +232,7 @@ public class Sitemkonser {
         System.out.println("===================================================================================");
         System.out.println("||                                Thank You                                      ||");
         System.out.println("===================================================================================");
-
+    
         System.out.println("\nHistory "+purchaseHistory);
 
         Menukonser();
