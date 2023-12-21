@@ -1,6 +1,6 @@
-<h1 align ="center">=============================================</h1>
+<h1 align ="center">======================================</h1>
 <h1 align ="center">  HI 👋,Selamat Datang Di Repository Kelompok kami</h1>
-<h1 align ="center">=============================================</h1>
+<h1 align ="center">======================================</h1>
 
 <h3 align ="center">Kami Membuat Project Pembelian Tiket Konser Secara Online Dan Dapat Membayar Secara Online Ataupun Offline</h3>
 <h3 align ="left">Perkenalkan kita adalah</h3>
